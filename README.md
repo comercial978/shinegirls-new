@@ -54,6 +54,8 @@ npm run start
 - A logomarca original foi preservada em `public/legacy/shine-girls-logo-original.jpeg`.
 - A logomarca enviada no diretório `logotipo` foi publicada em `public/legacy/logo-shine-girls-root.jpg` e aplicada no header/footer.
 - O rosa foi reforçado como cor principal da identidade visual.
+- O formulário de contato usa FormSubmit e redireciona para `/obrigado` após envio.
+- A foto atualizada da Barbara Santos está em `public/modelos/barbara-santos.jpg`.
 
 ## Comandos úteis
 

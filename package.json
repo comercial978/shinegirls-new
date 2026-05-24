@@ -4,7 +4,8 @@
   "description": "Nova plataforma premium da Shine Girls em Next.js.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && next build",
     "start": "next start",
     "lint": "eslint ."
   },

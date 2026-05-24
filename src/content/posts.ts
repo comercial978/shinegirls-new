@@ -69,7 +69,7 @@ export const posts: BlogPost[] = [
       "Trajetoria, concurso e visibilidade regional em um perfil pensado para marcas.",
     category: "Influenciadoras",
     date: "2024-01-07",
-    image: "/legacy/barbara-santos.jpg",
+    image: "/modelos/barbara-santos.jpg",
     body: [
       "Barbara Santos foi registrada no legado como Miss Sacramento 2024 e participante do Miss Minas Gerais 2024.",
       "Na nova Shine Girls, esse tipo de perfil passa a ter melhor contexto, chamada clara e apresentacao adequada para publicidade, eventos e parcerias.",

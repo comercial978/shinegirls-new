@@ -30,7 +30,7 @@ export const models: ModelProfile[] = [
     name: "Barbara Santos",
     role: "Miss Sacramento 2024",
     location: "Minas Gerais",
-    image: "/legacy/barbara-santos.jpg",
+    image: "/modelos/barbara-santos.jpg",
     summary:
       "Perfil associado a concursos, elegancia e trajetoria regional com potencial para projetos de marca e eventos.",
     highlight: "Beleza, concursos e visibilidade regional",

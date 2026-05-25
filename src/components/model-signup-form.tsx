@@ -35,7 +35,8 @@ export function ModelSignupForm() {
     setIsSubmitting(true);
     setState({ type: "idle", message: "" });
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const photo = formData.get("main_photo");
 
     if (photo instanceof File && photo.size > maxPhotoSize) {
@@ -56,7 +57,7 @@ export function ModelSignupForm() {
         return;
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setState({
         type: "success",
         message: result.message || "Cadastro criado com sucesso. Entre para acompanhar sua analise.",

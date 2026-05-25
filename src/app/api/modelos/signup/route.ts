@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import { isValidModelCategory, normalizeInstagram } from "@/lib/model-profiles";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -12,6 +13,31 @@ function text(formData: FormData, key: string) {
 
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, message }, { status });
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isExistingUserError(message = "") {
+  const normalized = message.toLowerCase();
+  return normalized.includes("already") || normalized.includes("registered") || normalized.includes("exists");
+}
+
+function createSupabasePasswordClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+
+  if (!url || !anonKey) {
+    return null;
+  }
+
+  return createClient(url, anonKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
 }
 
 export async function POST(request: Request) {
@@ -42,6 +68,10 @@ export async function POST(request: Request) {
       return jsonError("Preencha nome artistico, nome completo, e-mail e senha.");
     }
 
+    if (!isValidEmail(email)) {
+      return jsonError("Informe um e-mail valido. Exemplo: nome@dominio.com.br");
+    }
+
     if (password.length < 8) {
       return jsonError("A senha deve ter pelo menos 8 caracteres.");
     }
@@ -54,30 +84,65 @@ export async function POST(request: Request) {
       return jsonError("Confirme a idade minima e aceite os termos para continuar.");
     }
 
+    let userId = "";
+    let createdUserId = "";
+
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-      email,
-      password,
-      email_confirm: true,
-      user_metadata: {
-        role: "model",
-        artistic_name: artisticName,
-      },
-    });
+        email,
+        password,
+        email_confirm: true,
+        user_metadata: {
+          role: "model",
+          artistic_name: artisticName,
+        },
+      });
 
     if (authError || !authData.user) {
-      return jsonError(authError?.message || "Nao foi possivel criar a conta.");
+      const message = authError?.message || "";
+
+      if (!isExistingUserError(message)) {
+        return jsonError(message || "Nao foi possivel criar a conta.");
+      }
+
+      const passwordClient = createSupabasePasswordClient();
+      if (!passwordClient) {
+        return jsonError("Este e-mail ja possui cadastro. Use a pagina Entrar ou recuperar senha.");
+      }
+
+      const { data: loginData, error: loginError } = await passwordClient.auth.signInWithPassword({ email, password });
+      const existingUser = loginData.user;
+
+      if (loginError || !existingUser) {
+        return jsonError("Este e-mail ja possui cadastro. Entre com sua senha ou use recuperar senha.");
+      }
+
+      userId = existingUser.id;
+    } else {
+      userId = authData.user.id;
+      createdUserId = authData.user.id;
+    }
+
+    const { data: existingProfile } = await supabase.from("model_profiles").select("id").eq("id", userId).maybeSingle();
+
+    if (existingProfile) {
+      return NextResponse.json({
+        ok: true,
+        message: "Este e-mail ja possui cadastro. Entre para acompanhar sua analise.",
+      });
     }
 
     let mainPhotoUrl = "";
 
     if (photo instanceof File && photo.size > 0) {
       if (photo.size > maxPhotoSize) {
-        await supabase.auth.admin.deleteUser(authData.user.id);
+        if (createdUserId) {
+          await supabase.auth.admin.deleteUser(createdUserId);
+        }
         return jsonError("A foto principal deve ter no maximo 4 MB.");
       }
 
       const extension = photo.name.split(".").pop()?.toLowerCase() || "jpg";
-      const path = `${authData.user.id}/main-photo-${Date.now()}.${extension}`;
+      const path = `${userId}/main-photo-${Date.now()}.${extension}`;
       const buffer = Buffer.from(await photo.arrayBuffer());
 
       const { error: uploadError } = await supabase.storage.from("model-photos").upload(path, buffer, {
@@ -92,7 +157,7 @@ export async function POST(request: Request) {
     }
 
     const { error: profileError } = await supabase.from("model_profiles").insert({
-      id: authData.user.id,
+      id: userId,
       artistic_name: artisticName,
       full_name: fullName,
       email,
@@ -110,7 +175,9 @@ export async function POST(request: Request) {
     });
 
     if (profileError) {
-      await supabase.auth.admin.deleteUser(authData.user.id);
+      if (createdUserId) {
+        await supabase.auth.admin.deleteUser(createdUserId);
+      }
       return jsonError(profileError.message || "Nao foi possivel salvar o perfil.");
     }
 

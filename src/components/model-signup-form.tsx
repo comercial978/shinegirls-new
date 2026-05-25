@@ -10,6 +10,22 @@ type SubmitState = {
   message: string;
 };
 
+const maxPhotoSize = 4 * 1024 * 1024;
+
+async function readSignupResponse(response: Response) {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    return (await response.json()) as { ok: boolean; message?: string };
+  }
+
+  if (response.status === 413) {
+    return { ok: false, message: "A foto esta muito pesada. Envie uma imagem com ate 4 MB." };
+  }
+
+  return { ok: false, message: "Nao foi possivel criar o cadastro agora. Tente novamente em instantes." };
+}
+
 export function ModelSignupForm() {
   const [state, setState] = useState<SubmitState>({ type: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,13 +36,20 @@ export function ModelSignupForm() {
     setState({ type: "idle", message: "" });
 
     const formData = new FormData(event.currentTarget);
+    const photo = formData.get("main_photo");
+
+    if (photo instanceof File && photo.size > maxPhotoSize) {
+      setState({ type: "error", message: "A foto esta muito pesada. Envie uma imagem com ate 4 MB." });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch("/api/modelos/signup", {
         method: "POST",
         body: formData,
       });
-      const result = (await response.json()) as { ok: boolean; message?: string };
+      const result = await readSignupResponse(response);
 
       if (!response.ok || !result.ok) {
         setState({ type: "error", message: result.message || "Nao foi possivel criar o cadastro." });
@@ -39,7 +62,7 @@ export function ModelSignupForm() {
         message: result.message || "Cadastro criado com sucesso. Entre para acompanhar sua analise.",
       });
     } catch {
-      setState({ type: "error", message: "Erro de conexao. Tente novamente em instantes." });
+      setState({ type: "error", message: "Nao foi possivel conectar ao servidor. Tente novamente em instantes." });
     } finally {
       setIsSubmitting(false);
     }
@@ -106,7 +129,7 @@ export function ModelSignupForm() {
       <label className="grid gap-2 text-sm font-medium text-charcoal/78">
         Foto principal
         <input name="main_photo" type="file" accept="image/*" className="focus-ring rounded-[8px] border hairline px-4 py-3" />
-        <span className="text-xs font-normal text-charcoal/56">Opcional. Envie uma imagem vertical, com ate 5 MB.</span>
+        <span className="text-xs font-normal text-charcoal/56">Opcional. Envie uma imagem vertical, com ate 4 MB.</span>
       </label>
 
       <div className="grid gap-3 rounded-[8px] bg-pearl p-4 text-sm leading-6 text-charcoal/72">

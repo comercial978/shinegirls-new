@@ -26,6 +26,22 @@ const statusLabels: Record<string, string> = {
   rejected: "Recusado",
 };
 
+const maxPhotoSize = 4 * 1024 * 1024;
+
+async function readPhotoUploadResponse(response: Response) {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    return (await response.json()) as { ok: boolean; publicUrl?: string; message?: string };
+  }
+
+  if (response.status === 413) {
+    return { ok: false, message: "A foto principal deve ter no maximo 4 MB." };
+  }
+
+  return { ok: false, message: "Nao foi possivel enviar a foto agora. Tente novamente." };
+}
+
 export function ModelDashboard() {
   const router = useRouter();
   const [profile, setProfile] = useState<ModelProfileRecord | null>(null);
@@ -33,6 +49,7 @@ export function ModelDashboard() {
   const [userId, setUserId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isPhotoUploading, setIsPhotoUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -127,26 +144,46 @@ export function ModelDashboard() {
     setError("");
     setMessage("");
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError("A foto principal deve ter no maximo 5 MB.");
+    if (file.size > maxPhotoSize) {
+      setError("A foto principal deve ter no maximo 4 MB.");
       return;
     }
 
-    const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const path = `${userId}/dashboard-photo-${Date.now()}.${extension}`;
-    const { error: uploadError } = await supabase.storage.from("model-photos").upload(path, file, {
-      contentType: file.type || "image/jpeg",
-      upsert: true,
-    });
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData.session?.access_token;
 
-    if (uploadError) {
-      setError(uploadError.message);
+    if (!token) {
+      setError("Sessao expirada. Entre novamente para enviar a foto.");
       return;
     }
 
-    const { data } = supabase.storage.from("model-photos").getPublicUrl(path);
-    setForm((current) => ({ ...current, main_photo_url: data.publicUrl }));
-    setMessage("Foto enviada. Clique em salvar alteracoes para atualizar o perfil.");
+    const formData = new FormData();
+    formData.append("main_photo", file);
+
+    setIsPhotoUploading(true);
+
+    try {
+      const response = await fetch("/api/modelos/photo", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      const result = await readPhotoUploadResponse(response);
+
+      if (!response.ok || !result.ok || !result.publicUrl) {
+        setError(result.message || "Nao foi possivel enviar a foto.");
+        return;
+      }
+
+      setForm((current) => ({ ...current, main_photo_url: result.publicUrl || "" }));
+      setMessage(result.message || "Foto enviada. Clique em salvar alteracoes para atualizar o perfil.");
+    } catch {
+      setError("Nao foi possivel conectar ao servidor para enviar a foto.");
+    } finally {
+      setIsPhotoUploading(false);
+    }
   }
 
   async function handleLogout() {
@@ -240,9 +277,10 @@ export function ModelDashboard() {
         <label className="grid gap-2 text-sm font-medium text-charcoal/78">
           Foto principal
           <span className="inline-flex items-center gap-2 rounded-[8px] border hairline px-4 py-3 text-sm">
-            <Upload className="h-4 w-4 text-rose" aria-hidden />
-            <input type="file" accept="image/*" onChange={handlePhotoUpload} className="w-full text-sm" />
+            {isPhotoUploading ? <Loader2 className="h-4 w-4 animate-spin text-rose" aria-hidden /> : <Upload className="h-4 w-4 text-rose" aria-hidden />}
+            <input type="file" accept="image/*" onChange={handlePhotoUpload} disabled={isPhotoUploading} className="w-full text-sm disabled:cursor-not-allowed disabled:opacity-60" />
           </span>
+          <span className="text-xs font-normal text-charcoal/56">Envie uma imagem vertical, com ate 4 MB.</span>
         </label>
 
         {message ? <p className="rounded-[8px] bg-green-50 p-4 text-sm text-green-800">{message}</p> : null}
@@ -250,7 +288,7 @@ export function ModelDashboard() {
 
         <button
           type="submit"
-          disabled={isSaving}
+          disabled={isSaving || isPhotoUploading}
           className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-rose px-6 py-3 text-sm font-semibold text-white transition hover:bg-wine disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSaving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : null}

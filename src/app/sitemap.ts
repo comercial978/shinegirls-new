@@ -3,10 +3,12 @@ import { posts } from "@/content/posts";
 import { site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/sobre", "/modelos", "/modelos/cadastro", "/modelos/entrar", "/blog", "/anunciantes", "/loja", "/contato"].map((route) => ({
-    url: `${site.url}${route}`,
-    lastModified: new Date(),
-  }));
+  const routes = ["", "/sobre", "/institucional", "/modelos", "/modelos/cadastro", "/modelos/entrar", "/blog", "/anunciantes", "/loja", "/contato"].map(
+    (route) => ({
+      url: `${site.url}${route}`,
+      lastModified: new Date(),
+    }),
+  );
 
   const postRoutes = posts.map((post) => ({
     url: `${site.url}/blog/${post.slug}`,

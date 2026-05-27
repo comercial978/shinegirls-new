@@ -5,7 +5,7 @@ export const pillars = [
   },
   {
     title: "Moda e autoestima",
-    text: "O conteudo mais aproveitavel fala de looks, beleza, confianca, ensaios e inspiracao visual.",
+    text: "O conteúdo mais aproveitável fala de looks, beleza, confiança, ensaios e inspiração visual.",
   },
   {
     title: "Publicidade com curadoria",
@@ -16,7 +16,7 @@ export const pillars = [
 export const opportunities = [
   "Reposicionar a Home como vitrine editorial e comercial, sem cara de template WordPress.",
   "Transformar posts de modelos em perfis profissionais com CTA para publicidade.",
-  "Separar conteudo de moda, autoestima e anunciantes para melhorar SEO e leitura.",
+  "Separar conteúdo de moda, autoestima e anunciantes para melhorar SEO e leitura.",
   "Remover produtos dropshipping, duplicatas, shortcodes, cache legado e plugins obsoletos.",
-  "Criar base pronta para CMS headless ou loja futura sem acoplar a reconstrucao ao legado.",
+  "Criar base pronta para CMS headless ou loja futura sem acoplar a reconstrução ao legado.",
 ];

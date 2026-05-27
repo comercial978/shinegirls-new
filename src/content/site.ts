@@ -2,7 +2,7 @@ export const site = {
   shortName: "Shine Girls",
   title: "Shine Girls - beleza, moda e visibilidade feminina",
   description:
-    "Plataforma editorial e comercial para modelos, influenciadoras e marcas que querem ocupar o digital com elegancia, autoestima e presenca.",
+    "Plataforma editorial e comercial para modelos, influenciadoras e marcas que querem ocupar o digital com elegância, autoestima e presença.",
   url: "https://shinegirls.com.br",
   email: "shinegirls.com.br@gmail.com",
   whatsapp: "+55 34 98897-7879",

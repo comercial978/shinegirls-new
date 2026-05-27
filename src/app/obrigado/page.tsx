@@ -17,7 +17,7 @@ export default function ObrigadoPage() {
         <p className="mt-8 text-sm font-semibold uppercase tracking-[0.22em] text-rose">Mensagem enviada</p>
         <h1 className="mt-4 font-display text-5xl leading-tight text-ink">Obrigada pelo contato.</h1>
         <p className="mt-5 text-base leading-8 text-charcoal/72">
-          Recebemos sua mensagem e a equipe Shine Girls vai responder assim que possivel.
+          Recebemos sua mensagem e a equipe Shine Girls vai responder assim que possível.
         </p>
         <div className="mt-8">
           <ButtonLink href="/">Voltar para Home</ButtonLink>

@@ -21,7 +21,7 @@ export function ModelLoginForm() {
 
     const supabase = createSupabaseBrowserClient();
     if (!supabase) {
-      setError("Supabase nao esta configurado.");
+      setError("Supabase não está configurado.");
       return;
     }
 
@@ -49,7 +49,7 @@ export function ModelLoginForm() {
 
     const supabase = createSupabaseBrowserClient();
     if (!supabase) {
-      setError("Supabase nao esta configurado.");
+      setError("Supabase não está configurado.");
       return;
     }
 
@@ -62,7 +62,7 @@ export function ModelLoginForm() {
       return;
     }
 
-    setMessage("Enviamos um link de recuperacao para o seu e-mail.");
+    setMessage("Enviamos um link de recuperação para o seu e-mail.");
   }
 
   return (

@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     const supabase = createSupabaseAdminClient();
 
     if (!supabase) {
-      return jsonError("Supabase nao esta configurado no servidor.", 500);
+      return jsonError("Supabase não está configurado no servidor.", 500);
     }
 
     const formData = await request.formData();
@@ -65,11 +65,11 @@ export async function POST(request: Request) {
     const photo = formData.get("main_photo");
 
     if (!artisticName || !fullName || !email || !password) {
-      return jsonError("Preencha nome artistico, nome completo, e-mail e senha.");
+      return jsonError("Preencha nome artístico, nome completo, e-mail e senha.");
     }
 
     if (!isValidEmail(email)) {
-      return jsonError("Informe um e-mail valido. Exemplo: nome@dominio.com.br");
+      return jsonError("Informe um e-mail válido. Exemplo: nome@dominio.com.br");
     }
 
     if (password.length < 8) {
@@ -77,11 +77,11 @@ export async function POST(request: Request) {
     }
 
     if (!isValidModelCategory(category)) {
-      return jsonError("Selecione uma area de atuacao valida.");
+      return jsonError("Selecione uma área de atuação válida.");
     }
 
     if (!isAdultConfirmed || !termsAccepted) {
-      return jsonError("Confirme a idade minima e aceite os termos para continuar.");
+      return jsonError("Confirme a idade mínima e aceite os termos para continuar.");
     }
 
     let userId = "";
@@ -101,19 +101,19 @@ export async function POST(request: Request) {
       const message = authError?.message || "";
 
       if (!isExistingUserError(message)) {
-        return jsonError(message || "Nao foi possivel criar a conta.");
+        return jsonError(message || "Não foi possível criar a conta.");
       }
 
       const passwordClient = createSupabasePasswordClient();
       if (!passwordClient) {
-        return jsonError("Este e-mail ja possui cadastro. Use a pagina Entrar ou recuperar senha.");
+        return jsonError("Este e-mail já possui cadastro. Use a página Entrar ou recuperar senha.");
       }
 
       const { data: loginData, error: loginError } = await passwordClient.auth.signInWithPassword({ email, password });
       const existingUser = loginData.user;
 
       if (loginError || !existingUser) {
-        return jsonError("Este e-mail ja possui cadastro. Entre com sua senha ou use recuperar senha.");
+        return jsonError("Este e-mail já possui cadastro. Entre com sua senha ou use recuperar senha.");
       }
 
       userId = existingUser.id;
@@ -127,7 +127,7 @@ export async function POST(request: Request) {
     if (existingProfile) {
       return NextResponse.json({
         ok: true,
-        message: "Este e-mail ja possui cadastro. Entre para acompanhar sua analise.",
+        message: "Este e-mail já possui cadastro. Entre para acompanhar sua análise.",
       });
     }
 
@@ -138,7 +138,7 @@ export async function POST(request: Request) {
         if (createdUserId) {
           await supabase.auth.admin.deleteUser(createdUserId);
         }
-        return jsonError("A foto principal deve ter no maximo 4 MB.");
+        return jsonError("A foto principal deve ter no máximo 4 MB.");
       }
 
       const extension = photo.name.split(".").pop()?.toLowerCase() || "jpg";
@@ -178,15 +178,15 @@ export async function POST(request: Request) {
       if (createdUserId) {
         await supabase.auth.admin.deleteUser(createdUserId);
       }
-      return jsonError(profileError.message || "Nao foi possivel salvar o perfil.");
+      return jsonError(profileError.message || "Não foi possível salvar o perfil.");
     }
 
     return NextResponse.json({
       ok: true,
-      message: "Cadastro criado com sucesso. Agora entre para acompanhar sua analise.",
+      message: "Cadastro criado com sucesso. Agora entre para acompanhar sua análise.",
     });
   } catch (error) {
     console.error("Model signup failed", error);
-    return jsonError("Nao foi possivel concluir o cadastro agora. Verifique os dados e tente novamente.", 500);
+    return jsonError("Não foi possível concluir o cadastro agora. Verifique os dados e tente novamente.", 500);
   }
 }

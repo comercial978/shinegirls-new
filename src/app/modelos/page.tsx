@@ -17,8 +17,8 @@ export default function ModelosPage() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="Casting"
-          title="Perfis femininos com apresentacao profissional."
-          text="A antiga pagina de modelos foi reorganizada como portfolio editorial, com foco em clareza, imagem e potencial de parceria."
+          title="Perfis femininos com apresentação profissional."
+          text="A antiga página de modelos foi reorganizada como portfólio editorial, com foco em clareza, imagem e potencial de parceria."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {models.map((model) => (
@@ -29,13 +29,13 @@ export default function ModelosPage() {
         <section className="mt-16 overflow-hidden rounded-[8px] border hairline bg-ink text-pearl shadow-soft">
           <div className="grid gap-8 p-7 md:grid-cols-[1.2fr_0.8fr] md:p-10">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-blush">Faca parte do casting Shine Girls</p>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-blush">Faça parte do casting Shine Girls</p>
               <h2 className="font-display text-4xl leading-tight md:text-5xl">Crie seu perfil e entre para a curadoria.</h2>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-pearl/74">
-                Crie seu perfil, envie suas informacoes e aguarde aprovacao da curadoria Shine Girls.
+                Crie seu perfil, envie suas informações e aguarde aprovação da curadoria Shine Girls.
               </p>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-pearl/62">
-                Seus dados serao usados apenas para analise de cadastro, contato profissional e possivel participacao no casting Shine Girls.
+                Seus dados serão usados apenas para análise de cadastro, contato profissional e possível participação no casting Shine Girls.
               </p>
             </div>
             <div className="flex flex-col justify-end gap-3 sm:flex-row md:flex-col">

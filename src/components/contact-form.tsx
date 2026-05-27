@@ -30,7 +30,7 @@ export function ContactForm() {
 
   const fallbackEmailHref = useMemo(() => {
     const subject = encodeURIComponent("Novo contato pelo site Shine Girls");
-    const body = encodeURIComponent(lastMessage || "Ola, gostaria de falar com a Shine Girls.");
+    const body = encodeURIComponent(lastMessage || "Olá, gostaria de falar com a Shine Girls.");
     return `mailto:${site.email}?subject=${subject}&body=${body}`;
   }, [lastMessage]);
 
@@ -83,7 +83,7 @@ export function ContactForm() {
       {lastMessage ? (
         <div className="mt-5 rounded-[8px] bg-pearl p-5 text-sm leading-7 text-charcoal/72">
           <p className="font-semibold text-ink">A mensagem foi preparada.</p>
-          <p className="mt-1">Se o WhatsApp nao abrir automaticamente, use uma das opcoes abaixo.</p>
+          <p className="mt-1">Se o WhatsApp não abrir automaticamente, use uma das opções abaixo.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <a
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-rose px-4 py-2 font-semibold text-white transition hover:bg-wine"

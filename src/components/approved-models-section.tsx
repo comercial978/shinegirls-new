@@ -43,7 +43,7 @@ export function ApprovedModelsSection() {
           </p>
           <h2 className="font-display text-3xl text-ink md:text-4xl">Modelos aprovadas pela curadoria</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-charcoal/70">
-            Apenas perfis aprovados aparecem publicamente. Dados sensiveis como e-mail e WhatsApp permanecem protegidos.
+            Apenas perfis aprovados aparecem publicamente. Dados sensíveis como e-mail e WhatsApp permanecem protegidos.
           </p>
         </div>
       </div>
@@ -78,7 +78,7 @@ export function ApprovedModelsSection() {
                   {profile.bio ? <p className="mt-4 text-sm leading-7 text-charcoal/70">{profile.bio}</p> : null}
                   {externalUrl ? (
                     <a className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-wine" href={externalUrl} target="_blank" rel="noreferrer">
-                      Ver portfolio
+                      Ver portfólio
                       <ExternalLink className="h-4 w-4" aria-hidden />
                     </a>
                   ) : null}
@@ -89,7 +89,7 @@ export function ApprovedModelsSection() {
         </div>
       ) : (
         <div className="mt-8 rounded-[8px] bg-pearl p-5 text-sm leading-7 text-charcoal/70">
-          Ainda nao ha perfis aprovados publicados pelo banco. O casting editorial acima continua ativo enquanto a curadoria avalia novos cadastros.
+          Ainda não há perfis aprovados publicados pelo banco. O casting editorial acima continua ativo enquanto a curadoria avalia novos cadastros.
         </div>
       )}
     </section>

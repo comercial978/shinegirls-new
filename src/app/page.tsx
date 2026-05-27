@@ -35,7 +35,7 @@ export default function HomePage() {
               A nova vitrine da beleza feminina no digital.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-pearl/78">
-              Shine Girls evolui para uma plataforma premium de visibilidade, conteudo e parcerias para modelos,
+              Shine Girls evolui para uma plataforma premium de visibilidade, conteúdo e parcerias para modelos,
               influenciadoras e marcas que falam com o universo feminino.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -50,7 +50,7 @@ export default function HomePage() {
           <div className="hidden self-end rounded-[8px] border border-white/14 bg-white/10 p-5 backdrop-blur md:block">
             <div className="grid grid-cols-3 gap-3 text-center">
               {[
-                ["30", "paginas auditadas"],
+                ["30", "páginas auditadas"],
                 ["17", "posts curados"],
                 ["135", "produtos legados descartados"],
               ].map(([value, label]) => (
@@ -68,8 +68,8 @@ export default function HomePage() {
         <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHeading
             eyebrow="Reposicionamento"
-            title="A essencia foi preservada. O excesso ficou no legado."
-            text="A auditoria mostrou uma marca com apelo feminino, conteudo de modelos, moda, autoestima e publicidade, mas soterrada por WordPress, WooCommerce, dropshipping, shortcodes e plugins."
+            title="A essência foi preservada. O excesso ficou no legado."
+            text="A auditoria mostrou uma marca com apelo feminino, conteúdo de modelos, moda, autoestima e publicidade, mas soterrada por WordPress, WooCommerce, dropshipping, shortcodes e plugins."
           />
           <div className="grid gap-4 sm:grid-cols-3">
             {pillars.map((item, index) => {
@@ -93,7 +93,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Casting"
               title="Modelos em destaque"
-              text="Perfis reorganizados como portfolio, nao como copia bruta de posts antigos."
+              text="Perfis reorganizados como portfólio, não como cópia bruta de posts antigos."
             />
             <ButtonLink href="/modelos" variant="outline">
               Ver casting
@@ -112,11 +112,11 @@ export default function HomePage() {
           <div>
             <SectionHeading
               eyebrow="Editorial"
-              title="Moda, autoestima e presenca"
+              title="Moda, autoestima e presença"
               text="O blog foi reduzido ao que fortalece a marca: looks, modelos, beleza e oportunidades comerciais."
             />
             <div className="mt-8 grid gap-3 text-sm text-charcoal/72">
-              {["Conteudo com headings claros", "Imagens com carregamento otimizado", "URLs limpas e metadata dinamica"].map((item) => (
+              {["Conteúdo com headings claros", "Imagens com carregamento otimizado", "URLs limpas e metadata dinâmica"].map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <BadgeCheck className="h-5 w-5 text-sage" aria-hidden />
                   {item}
@@ -140,20 +140,20 @@ export default function HomePage() {
               A loja antiga sai de cena. A nova pode nascer como curadoria.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-pearl/72">
-              WooCommerce, AliDropship e catalogos importados foram tratados como legado tecnico. A nova estrategia
-              abre espaco para uma loja autoral, com drops selecionados, afiliados premium ou parcerias.
+              WooCommerce, AliDropship e catálogos importados foram tratados como legado técnico. A nova estratégia
+              abre espaço para uma loja autoral, com drops selecionados, afiliados premium ou parcerias.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <Link href="/loja" className="rounded-[8px] bg-pearl p-6 text-ink transition hover:bg-blush">
               <Store className="mb-5 h-7 w-7 text-rose" aria-hidden />
               <h3 className="font-display text-2xl">Nova loja</h3>
-              <p className="mt-3 text-sm leading-7 text-charcoal/70">Pagina estrategica pronta para evoluir sem herdar WooCommerce.</p>
+              <p className="mt-3 text-sm leading-7 text-charcoal/70">Página estratégica pronta para evoluir sem herdar WooCommerce.</p>
             </Link>
             <Link href="/contato" className="rounded-[8px] border border-white/14 p-6 transition hover:border-blush">
               <Megaphone className="mb-5 h-7 w-7 text-blush" aria-hidden />
               <h3 className="font-display text-2xl">Campanhas</h3>
-              <p className="mt-3 text-sm leading-7 text-pearl/70">Espaco para anunciantes, marcas e parcerias comerciais.</p>
+              <p className="mt-3 text-sm leading-7 text-pearl/70">Espaço para anunciantes, marcas e parcerias comerciais.</p>
             </Link>
           </div>
         </div>

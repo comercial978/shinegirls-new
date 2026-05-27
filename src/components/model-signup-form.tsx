@@ -20,10 +20,10 @@ async function readSignupResponse(response: Response) {
   }
 
   if (response.status === 413) {
-    return { ok: false, message: "A foto esta muito pesada. Envie uma imagem com ate 4 MB." };
+    return { ok: false, message: "A foto está muito pesada. Envie uma imagem com até 4 MB." };
   }
 
-  return { ok: false, message: "Nao foi possivel criar o cadastro agora. Tente novamente em instantes." };
+  return { ok: false, message: "Não foi possível criar o cadastro agora. Tente novamente em instantes." };
 }
 
 export function ModelSignupForm() {
@@ -40,7 +40,7 @@ export function ModelSignupForm() {
     const photo = formData.get("main_photo");
 
     if (photo instanceof File && photo.size > maxPhotoSize) {
-      setState({ type: "error", message: "A foto esta muito pesada. Envie uma imagem com ate 4 MB." });
+      setState({ type: "error", message: "A foto está muito pesada. Envie uma imagem com até 4 MB." });
       setIsSubmitting(false);
       return;
     }
@@ -53,17 +53,17 @@ export function ModelSignupForm() {
       const result = await readSignupResponse(response);
 
       if (!response.ok || !result.ok) {
-        setState({ type: "error", message: result.message || "Nao foi possivel criar o cadastro." });
+        setState({ type: "error", message: result.message || "Não foi possível criar o cadastro." });
         return;
       }
 
       form.reset();
       setState({
         type: "success",
-        message: result.message || "Cadastro criado com sucesso. Entre para acompanhar sua analise.",
+        message: result.message || "Cadastro criado com sucesso. Entre para acompanhar sua análise.",
       });
     } catch {
-      setState({ type: "error", message: "Nao foi possivel conectar ao servidor. Tente novamente em instantes." });
+      setState({ type: "error", message: "Não foi possível conectar ao servidor. Tente novamente em instantes." });
     } finally {
       setIsSubmitting(false);
     }
@@ -73,7 +73,7 @@ export function ModelSignupForm() {
     <form className="grid gap-5 rounded-[8px] border hairline bg-white p-6 shadow-sm md:p-8" onSubmit={handleSubmit}>
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-charcoal/78">
-          Nome artistico
+          Nome artístico
           <input name="artistic_name" className="focus-ring rounded-[8px] border hairline px-4 py-3" required />
         </label>
         <label className="grid gap-2 text-sm font-medium text-charcoal/78">
@@ -107,7 +107,7 @@ export function ModelSignupForm() {
       </div>
 
       <label className="grid gap-2 text-sm font-medium text-charcoal/78">
-        Area de atuacao
+        Área de atuação
         <select name="category" className="focus-ring rounded-[8px] border hairline px-4 py-3" defaultValue="modelo" required>
           {MODEL_CATEGORIES.map((category) => (
             <option key={category} value={category}>
@@ -123,14 +123,14 @@ export function ModelSignupForm() {
       </label>
 
       <label className="grid gap-2 text-sm font-medium text-charcoal/78">
-        Link de portfolio ou Instagram
+        Link de portfólio ou Instagram
         <input name="portfolio_url" type="url" className="focus-ring rounded-[8px] border hairline px-4 py-3" placeholder="https://..." />
       </label>
 
       <label className="grid gap-2 text-sm font-medium text-charcoal/78">
         Foto principal
         <input name="main_photo" type="file" accept="image/*" className="focus-ring rounded-[8px] border hairline px-4 py-3" />
-        <span className="text-xs font-normal text-charcoal/56">Opcional. Envie uma imagem vertical, com ate 4 MB.</span>
+        <span className="text-xs font-normal text-charcoal/56">Opcional. Envie uma imagem vertical, com até 4 MB.</span>
       </label>
 
       <div className="grid gap-3 rounded-[8px] bg-pearl p-4 text-sm leading-6 text-charcoal/72">
@@ -140,9 +140,9 @@ export function ModelSignupForm() {
         </label>
         <label className="flex gap-3">
           <input name="terms_accepted" type="checkbox" required className="mt-1" />
-          Aceito os termos e a politica de privacidade da Shine Girls.
+          Aceito os termos e a política de privacidade da Shine Girls.
         </label>
-        <p>Seus dados serao usados apenas para analise de cadastro, contato profissional e possivel participacao no casting Shine Girls.</p>
+        <p>Seus dados serão usados apenas para análise de cadastro, contato profissional e possível participação no casting Shine Girls.</p>
       </div>
 
       {state.message ? (
@@ -161,7 +161,7 @@ export function ModelSignupForm() {
           Criar cadastro
         </button>
         <Link href="/modelos/entrar" className="focus-ring rounded-full border hairline px-6 py-3 text-center text-sm font-semibold text-ink transition hover:border-rose hover:text-wine">
-          Ja tenho cadastro
+          Já tenho cadastro
         </Link>
       </div>
     </form>

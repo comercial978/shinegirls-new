@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/section-heading";
 
 export const metadata: Metadata = {
   title: "Dashboard da modelo",
-  description: "Area protegida para modelos cadastradas na Shine Girls.",
+  description: "Área protegida para modelos cadastradas na Shine Girls.",
 };
 
 export default function DashboardModeloPage() {
@@ -14,7 +14,7 @@ export default function DashboardModeloPage() {
         <SectionHeading
           eyebrow="Dashboard"
           title="Seu perfil Shine Girls."
-          text="Edite suas informacoes profissionais e acompanhe o status da curadoria."
+          text="Edite suas informações profissionais e acompanhe o status da curadoria."
         />
         <div className="mt-10">
           <ModelDashboard />

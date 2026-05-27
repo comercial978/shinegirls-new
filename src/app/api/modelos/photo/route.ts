@@ -25,20 +25,20 @@ export async function POST(request: Request) {
     const supabase = createSupabaseAdminClient();
 
     if (!supabase) {
-      return jsonError("Supabase nao esta configurado no servidor.", 500);
+      return jsonError("Supabase não está configurado no servidor.", 500);
     }
 
     const token = getBearerToken(request);
 
     if (!token) {
-      return jsonError("Sessao expirada. Entre novamente para enviar a foto.", 401);
+      return jsonError("Sessão expirada. Entre novamente para enviar a foto.", 401);
     }
 
     const { data: userData, error: userError } = await supabase.auth.getUser(token);
     const user = userData.user;
 
     if (userError || !user) {
-      return jsonError("Sessao expirada. Entre novamente para enviar a foto.", 401);
+      return jsonError("Sessão expirada. Entre novamente para enviar a foto.", 401);
     }
 
     const formData = await request.formData();
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     }
 
     if (photo.size > maxPhotoSize) {
-      return jsonError("A foto principal deve ter no maximo 4 MB.");
+      return jsonError("A foto principal deve ter no máximo 4 MB.");
     }
 
     const extension = photo.name.split(".").pop()?.toLowerCase() || "jpg";
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     });
 
     if (uploadError) {
-      return jsonError(uploadError.message || "Nao foi possivel enviar a foto.", 500);
+      return jsonError(uploadError.message || "Não foi possível enviar a foto.", 500);
     }
 
     const { data } = supabase.storage.from("model-photos").getPublicUrl(path);
@@ -70,10 +70,10 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       publicUrl: data.publicUrl,
-      message: "Foto enviada. Clique em salvar alteracoes para atualizar o perfil.",
+      message: "Foto enviada. Clique em salvar alterações para atualizar o perfil.",
     });
   } catch (error) {
     console.error("Model photo upload failed", error);
-    return jsonError("Nao foi possivel enviar a foto agora. Tente novamente.", 500);
+    return jsonError("Não foi possível enviar a foto agora. Tente novamente.", 500);
   }
 }

@@ -14,7 +14,7 @@ export default function CadastroModeloPage() {
         <SectionHeading
           eyebrow="Casting Shine Girls"
           title="Crie seu perfil para a curadoria."
-          text="Envie suas informacoes profissionais e aguarde aprovacao antes de qualquer exibicao publica."
+          text="Envie suas informações profissionais e aguarde aprovação antes de qualquer exibição pública."
         />
         <ModelSignupForm />
       </div>

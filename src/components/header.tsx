@@ -19,7 +19,7 @@ export function Header() {
             Shine Girls
           </span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-charcoal/76 md:flex" aria-label="Navegacao principal">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-charcoal/76 md:flex" aria-label="Navegação principal">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="focus-ring rounded-full transition hover:text-wine">
               {item.label}

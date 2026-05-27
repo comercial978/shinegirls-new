@@ -14,7 +14,7 @@ export default function BlogPage() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="Editorial"
-          title="Conteudo curado do legado Shine Girls."
+          title="Conteúdo curado do legado Shine Girls."
           text="Posts fracos, duplicados e puramente comerciais foram descartados. Ficaram temas que sustentam posicionamento e SEO."
         />
         <div className="mt-10 grid gap-6">

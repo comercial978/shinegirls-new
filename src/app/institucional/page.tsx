@@ -78,8 +78,14 @@ export default function InstitucionalPage() {
               title="Garotas que brilham: o sentimento que deu nome ao projeto."
               text="O arquivo institucional antigo revela uma marca nascida de autoestima, acolhimento e desejo de falar com um publico feminino de maneira proxima."
             />
-            <div className="relative mt-10 aspect-[4/5] overflow-hidden rounded-[8px] bg-mist shadow-soft">
-              <Image src="/legacy/shine-girls-logo-original.jpeg" alt="Logomarca original Shine Girls" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+            <div className="relative mt-10 aspect-[5/4] overflow-hidden rounded-[8px] bg-white shadow-soft ring-1 ring-rose/10">
+              <Image
+                src="/institucional/melina-1024x819.png.webp"
+                alt="Melina, origem institucional Shine Girls"
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-contain"
+              />
             </div>
           </div>
 

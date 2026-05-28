@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LogIn, UserPlus } from "lucide-react";
+import { HelpCircle, LogIn, UserPlus } from "lucide-react";
 import { ApprovedModelsSection } from "@/components/approved-models-section";
 import { ModelCard } from "@/components/model-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -46,6 +46,10 @@ export default function ModelosPage() {
               <Link href="/modelos/entrar" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-pearl px-6 py-3 text-sm font-semibold text-ink transition hover:bg-blush">
                 <LogIn className="h-4 w-4" aria-hidden />
                 Entrar
+              </Link>
+              <Link href="/modelos/como-funciona" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/18 px-6 py-3 text-sm font-semibold text-pearl transition hover:border-blush hover:text-blush">
+                <HelpCircle className="h-4 w-4" aria-hidden />
+                Entenda como funciona
               </Link>
             </div>
           </div>

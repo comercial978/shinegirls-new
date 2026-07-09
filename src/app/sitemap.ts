@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { news } from "@/content/news";
 import { posts } from "@/content/posts";
 import { site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/sobre", "/institucional", "/modelos", "/modelos/como-funciona", "/blog", "/anunciantes", "/loja", "/contato"].map((route) => ({
+  const routes = ["", "/sobre", "/institucional", "/modelos", "/modelos/como-funciona", "/blog", "/noticias", "/anunciantes", "/loja", "/contato"].map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
@@ -17,5 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...routes, ...postRoutes];
+  const newsRoutes = news.map((article) => ({
+    url: `${site.url}/noticias/${article.slug}`,
+    lastModified: new Date(article.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...postRoutes, ...newsRoutes];
 }

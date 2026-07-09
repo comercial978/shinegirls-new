@@ -3,14 +3,17 @@ import Link from "next/link";
 import { BadgeCheck, Gem, Megaphone, Store, Users } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { ModelCard } from "@/components/model-card";
+import { NewsCard } from "@/components/news-card";
 import { PostCard } from "@/components/post-card";
 import { SectionHeading } from "@/components/section-heading";
 import { models } from "@/content/models";
+import { news } from "@/content/news";
 import { posts } from "@/content/posts";
 import { pillars } from "@/content/strategy";
 
 export default function HomePage() {
   const featuredPosts = posts.slice(0, 3);
+  const featuredNews = news.slice(0, 3);
 
   return (
     <>
@@ -127,6 +130,26 @@ export default function HomePage() {
           <div className="grid gap-5">
             {featuredPosts.map((post, index) => (
               <PostCard key={post.slug} post={post} priority={index === 0} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-shell">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow="Notícias"
+              title="Tendências para modelos, moda e presença digital"
+              text="Uma nova editoria para fortalecer a indexação no Google e responder ao que o público busca sobre casting, influência, beleza e estilo."
+            />
+            <ButtonLink href="/noticias" variant="outline">
+              Ver notícias
+            </ButtonLink>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {featuredNews.map((article, index) => (
+              <NewsCard key={article.slug} article={article} priority={index === 0} />
             ))}
           </div>
         </div>

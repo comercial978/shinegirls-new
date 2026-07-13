@@ -29,6 +29,9 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/atualizacoes-do-site" className="transition hover:text-white">
+              Atualizações do Site
+            </Link>
           </div>
         </div>
         <div>

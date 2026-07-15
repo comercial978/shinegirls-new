@@ -1,19 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Camera } from "lucide-react";
 import type { ModelProfile } from "@/content/models";
 
 export function ModelCard({ model }: { model: ModelProfile }) {
+  const image = (
+    <div className="relative aspect-[4/5] overflow-hidden bg-mist">
+      <Image
+        src={model.image}
+        alt={`Retrato de ${model.name}`}
+        fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+        className="object-cover transition duration-700 group-hover:scale-105"
+      />
+    </div>
+  );
+
   return (
     <article className="group overflow-hidden rounded-[8px] border hairline bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
-      <div className="relative aspect-[4/5] overflow-hidden bg-mist">
-        <Image
-          src={model.image}
-          alt={`Retrato de ${model.name}`}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition duration-700 group-hover:scale-105"
-        />
-      </div>
+      {model.href ? <Link href={model.href}>{image}</Link> : image}
       <div className="p-5">
         <div className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-rose">
           <Camera className="h-4 w-4" aria-hidden />
@@ -24,6 +29,11 @@ export function ModelCard({ model }: { model: ModelProfile }) {
           {model.role} · {model.location}
         </p>
         <p className="mt-4 text-sm leading-7 text-charcoal/70">{model.summary}</p>
+        {model.href ? (
+          <Link href={model.href} className="mt-5 inline-flex text-sm font-semibold text-wine transition hover:text-rose">
+            Conheça o perfil completo
+          </Link>
+        ) : null}
       </div>
     </article>
   );

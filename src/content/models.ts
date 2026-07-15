@@ -5,6 +5,7 @@ export type ModelProfile = {
   image: string;
   summary: string;
   highlight: string;
+  href?: string;
 };
 
 export const models: ModelProfile[] = [
@@ -34,6 +35,16 @@ export const models: ModelProfile[] = [
     summary:
       "Perfil associado a concursos, elegância e trajetória regional com potencial para projetos de marca e eventos.",
     highlight: "Beleza, concursos e visibilidade regional",
+  },
+  {
+    name: "Maria Eduarda",
+    role: "Miss Goiás Teen 2025",
+    location: "Goiânia, GO",
+    image: "/modelos/maria-eduarda/maria-eduarda-01.jpg",
+    summary:
+      "Modelo, influenciadora digital e estudante de Jornalismo, une beleza, comunicação e presença diante das câmeras em moda, beleza e lifestyle.",
+    highlight: "Miss Goiás Teen 2025",
+    href: "/modelos/maria-eduarda",
   },
   {
     name: "Renata Palis",

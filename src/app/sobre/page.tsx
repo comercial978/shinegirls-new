@@ -12,7 +12,7 @@ export default function SobrePage() {
   return (
     <section className="bg-pearl py-16 md:py-24">
       <div className="container-shell grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-        <div className="sticky top-24">
+        <div className="lg:sticky lg:top-24">
           <SectionHeading
             eyebrow="Quem somos"
             title="Uma evolução premium para uma marca que nasceu da beleza feminina."

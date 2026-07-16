@@ -14,6 +14,21 @@ export const metadata: Metadata = {
 
 const updates = [
   {
+    date: "16/07/2026",
+    time: "12:48",
+    title: "Experiência do Casting Shine Girls renovada",
+    description:
+      "A jornada para modelos foi reorganizada para tornar o cadastro mais visível, simples e seguro, desde a página inicial até o acompanhamento pela área logada.",
+    items: [
+      "Home com destaque para o casting",
+      "Novos atalhos de cadastro no menu e no celular",
+      "Cadastro organizado em três etapas",
+      "Rascunho salvo com privacidade",
+      "Termos, privacidade e autorização de imagem",
+      "Perfis individuais e status mais claros",
+    ],
+  },
+  {
     date: "13/07/2026",
     time: "11:15",
     title: "Página de atualizações criada",

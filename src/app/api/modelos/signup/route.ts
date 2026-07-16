@@ -62,6 +62,7 @@ export async function POST(request: Request) {
     const portfolioUrl = text(formData, "portfolio_url");
     const isAdultConfirmed = formData.get("is_adult_confirmed") === "on";
     const termsAccepted = formData.get("terms_accepted") === "on";
+    const publicationAuthorized = formData.get("publication_authorized") === "on";
     const photo = formData.get("main_photo");
 
     if (!artisticName || !fullName || !email || !password) {
@@ -80,8 +81,8 @@ export async function POST(request: Request) {
       return jsonError("Selecione uma área de atuação válida.");
     }
 
-    if (!isAdultConfirmed || !termsAccepted) {
-      return jsonError("Confirme a idade mínima e aceite os termos para continuar.");
+    if (!isAdultConfirmed || !termsAccepted || !publicationAuthorized) {
+      return jsonError("Confirme a idade mínima e aceite os termos e autorizações para continuar.");
     }
 
     let userId = "";
@@ -94,6 +95,8 @@ export async function POST(request: Request) {
         user_metadata: {
           role: "model",
           artistic_name: artisticName,
+          publication_authorized: publicationAuthorized,
+          publication_authorized_at: new Date().toISOString(),
         },
       });
 
@@ -120,6 +123,17 @@ export async function POST(request: Request) {
     } else {
       userId = authData.user.id;
       createdUserId = authData.user.id;
+    }
+
+    if (!createdUserId) {
+      await supabase.auth.admin.updateUserById(userId, {
+        user_metadata: {
+          role: "model",
+          artistic_name: artisticName,
+          publication_authorized: publicationAuthorized,
+          publication_authorized_at: new Date().toISOString(),
+        },
+      });
     }
 
     const { data: existingProfile } = await supabase.from("model_profiles").select("id").eq("id", userId).maybeSingle();

@@ -1,15 +1,15 @@
 export const pillars = [
   {
-    title: "Visibilidade feminina",
-    text: "A marca nasceu para divulgar modelos, influenciadoras e trabalhos ligados ao universo feminino.",
+    title: "Mais posicionamento",
+    text: "Um perfil organizado apresenta sua imagem, sua trajetória e seu potencial de forma mais profissional.",
   },
   {
-    title: "Moda e autoestima",
-    text: "O conteúdo mais aproveitável fala de looks, beleza, confiança, ensaios e inspiração visual.",
+    title: "Curadoria segura",
+    text: "Todo perfil passa por análise e seus dados pessoais permanecem protegidos antes de qualquer publicação.",
   },
   {
-    title: "Publicidade com curadoria",
-    text: "O antigo e-commerce vira uma frente de parcerias, campanhas e loja futura sem herdar WooCommerce.",
+    title: "Mais oportunidades",
+    text: "Perfis aprovados podem ser considerados para conteúdos, campanhas, editoriais, eventos e parcerias.",
   },
 ];
 

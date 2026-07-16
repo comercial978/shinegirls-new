@@ -56,12 +56,34 @@ npm run start
 ## Funcionalidades de modelos
 
 - `/modelos`: mantem o casting editorial atual.
-- `/modelos/cadastro`: cadastro de modelo com Supabase Auth e perfil pendente.
+- `/modelos/cadastro`: cadastro em tres etapas com Supabase Auth e perfil pendente.
 - `/modelos/entrar`: login e recuperacao de senha.
 - `/modelos/dashboard`: area protegida para ver/editar perfil.
+- `/modelos/como-funciona`: explica o processo, a curadoria e a privacidade.
+- `/termos` e `/privacidade`: documentos vinculados aos consentimentos do cadastro.
 - Perfis cadastrados entram com `status = pending`.
 - Apenas perfis aprovados devem aparecer publicamente.
 - Dados sensiveis como e-mail e WhatsApp nao sao exibidos na listagem publica.
+- A autorizacao de analise/publicacao fica registrada nos metadados da conta do Supabase Auth.
+- O rascunho do formulario e salvo no dispositivo, sem armazenar senha ou foto.
+
+## Analytics do funil
+
+O projeto usa `@vercel/analytics` para visualizacoes de pagina e deixa preparados os eventos:
+
+```text
+visitou_home
+clicou_casting
+clicou_criar_cadastro
+iniciou_cadastro
+concluiu_etapa_1
+concluiu_etapa_2
+enviou_foto
+enviou_cadastro
+erro_no_formulario
+```
+
+Ative Web Analytics no painel da Vercel. Eventos personalizados dependem de um plano da Vercel que ofereca esse recurso; o site continua funcionando normalmente quando eles nao estiverem disponiveis.
 
 ## SQL Supabase
 

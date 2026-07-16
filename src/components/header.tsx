@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MobileNavigation } from "@/components/mobile-navigation";
+import { TrackedLink } from "@/components/tracked-link";
 import { navItems, site } from "@/content/site";
 
 export function Header() {
@@ -26,12 +28,17 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/contato"
-          className="focus-ring rounded-full bg-rose px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-wine"
-        >
-          Parcerias
-        </Link>
+        <div className="flex items-center gap-3">
+          <TrackedLink
+            href="/modelos/cadastro"
+            eventName="clicou_criar_cadastro"
+            eventData={{ origem: "cabecalho" }}
+            className="focus-ring hidden rounded-full bg-rose px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-wine lg:inline-flex"
+          >
+            Entrar para o casting
+          </TrackedLink>
+          <MobileNavigation />
+        </div>
       </div>
     </header>
   );

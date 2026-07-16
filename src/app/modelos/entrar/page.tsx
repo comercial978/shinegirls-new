@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/section-heading";
 export const metadata: Metadata = {
   title: "Entrar como modelo",
   description: "Acesse sua área de modelo na Shine Girls.",
+  robots: { index: false, follow: false },
 };
 
 export default function EntrarModeloPage() {

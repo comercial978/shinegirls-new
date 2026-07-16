@@ -17,6 +17,7 @@ export const models: ModelProfile[] = [
     summary:
       "Presença editorial forte, beleza marcante e narrativa de moda ligada à autoestima, looks casuais e produções sofisticadas.",
     highlight: "Editorial de moda, beleza e estilo pessoal",
+    href: "/modelos/laysa-padovani",
   },
   {
     name: "Marcella Narhell",
@@ -26,6 +27,7 @@ export const models: ModelProfile[] = [
     summary:
       "Imagem de impacto para campanhas de moda, ensaios autorais e comunicação visual com energia ousada.",
     highlight: "Ensaios, presença digital e campanhas",
+    href: "/modelos/marcella-narhell",
   },
   {
     name: "Barbara Santos",
@@ -35,6 +37,7 @@ export const models: ModelProfile[] = [
     summary:
       "Perfil associado a concursos, elegância e trajetória regional com potencial para projetos de marca e eventos.",
     highlight: "Beleza, concursos e visibilidade regional",
+    href: "/modelos/barbara-santos",
   },
   {
     name: "Maria Eduarda",
@@ -54,5 +57,6 @@ export const models: ModelProfile[] = [
     summary:
       "Arquivo legado preservado como parte da memória visual da Shine Girls e da primeira fase editorial do projeto.",
     highlight: "Memória de marca e portfólio",
+    href: "/modelos/renata-palis",
   },
 ];

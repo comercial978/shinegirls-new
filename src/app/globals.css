@@ -23,6 +23,7 @@ body {
   color: #171318;
   font-family: var(--font-sans), Arial, sans-serif;
   letter-spacing: 0;
+  padding-bottom: 72px;
 }
 
 ::selection {
@@ -44,8 +45,23 @@ a {
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid rgba(232, 63, 143, 0.35);
+  outline: 3px solid rgba(157, 23, 77, 0.7);
   outline-offset: 3px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(157, 23, 77, 0.7);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
 }
 
 .prose-sg p {

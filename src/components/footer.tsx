@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AtSign, Mail, MessageCircle } from "lucide-react";
-import { navItems, site } from "@/content/site";
+import { footerItems, site } from "@/content/site";
 
 export function Footer() {
   return (
@@ -24,13 +24,19 @@ export function Footer() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blush">Mapa</p>
           <div className="mt-4 grid gap-2 text-sm text-pearl/72">
-            {navItems.map((item) => (
+            {footerItems.map((item) => (
               <Link key={item.href} href={item.href} className="transition hover:text-white">
                 {item.label}
               </Link>
             ))}
             <Link href="/atualizacoes-do-site" className="transition hover:text-white">
               Atualizações do Site
+            </Link>
+            <Link href="/termos" className="transition hover:text-white">
+              Termos de Uso
+            </Link>
+            <Link href="/privacidade" className="transition hover:text-white">
+              Política de Privacidade
             </Link>
           </div>
         </div>
@@ -53,7 +59,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-pearl/52">
-        © {new Date().getFullYear()} Shine Girls. Nova plataforma independente do legado WordPress.
+        © {new Date().getFullYear()} Shine Girls. Moda, beleza, conteúdo e oportunidades com curadoria.
       </div>
     </footer>
   );

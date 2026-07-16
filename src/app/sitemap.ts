@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { news } from "@/content/news";
+import { models } from "@/content/models";
 import { posts } from "@/content/posts";
 import { site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/sobre", "/institucional", "/modelos", "/modelos/maria-eduarda", "/modelos/como-funciona", "/blog", "/noticias", "/atualizacoes-do-site", "/anunciantes", "/loja", "/contato"].map((route) => ({
+  const routes = ["", "/sobre", "/institucional", "/modelos", "/modelos/maria-eduarda", "/modelos/como-funciona", "/blog", "/noticias", "/atualizacoes-do-site", "/anunciantes", "/loja", "/contato", "/termos", "/privacidade"].map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
@@ -25,5 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...routes, ...postRoutes, ...newsRoutes];
+  const modelRoutes = models
+    .filter((model) => model.href && model.href !== "/modelos/maria-eduarda")
+    .map((model) => ({
+      url: `${site.url}${model.href}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+
+  return [...routes, ...postRoutes, ...newsRoutes, ...modelRoutes];
 }

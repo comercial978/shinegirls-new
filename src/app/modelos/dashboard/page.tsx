@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/section-heading";
 export const metadata: Metadata = {
   title: "Dashboard da modelo",
   description: "Área protegida para modelos cadastradas na Shine Girls.",
+  robots: { index: false, follow: false },
 };
 
 export default function DashboardModeloPage() {

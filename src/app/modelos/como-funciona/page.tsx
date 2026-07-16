@@ -83,6 +83,10 @@ const faq = [
       "Não necessariamente. O casting também é voltado para influenciadoras, criadoras de conteúdo, misses, mulheres ligadas à moda, beleza, eventos e publicidade.",
   },
   {
+    question: "O casting aceita menores de 18 anos?",
+    answer: "Não. Nesta fase, o cadastro da Shine Girls é exclusivo para mulheres com 18 anos ou mais.",
+  },
+  {
     question: "Quais dados ficam públicos?",
     answer:
       "Apenas informações aprovadas para divulgação, como nome artístico, cidade, categoria, bio, Instagram ou portfólio. Dados sensíveis não serão exibidos publicamente.",

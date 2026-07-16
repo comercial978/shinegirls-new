@@ -50,16 +50,16 @@ export const posts: BlogPost[] = [
     ],
   },
   {
-    slug: "modelo-marcella-narhell",
-    title: "Modelo Marcella Narhell",
+    slug: "melina-trida-origem-shine-girls",
+    title: "Melina Trida e a essência da Shine Girls",
     excerpt:
-      "Um perfil de impacto para campanhas que pedem ousadia, moda e atitude.",
+      "Beleza, estilo e memória visual em um perfil ligado à origem da identidade Shine Girls.",
     category: "Garotas que Brilham",
-    date: "2024-09-09",
-    image: "/legacy/marcella-narhell.jpeg",
+    date: "2026-07-16",
+    image: "/institucional/melina-1024x819.png.webp",
     body: [
-      "Marcella Narhell entra na curadoria Shine Girls como imagem de impacto: uma presença de estúdio, direta e memorável.",
-      "A nova abordagem editorial evita reproduzir conteúdo social bruto e organiza cada perfil como vitrine profissional.",
+      "Melina Trida faz parte da memória visual que ajudou a construir a identidade da Shine Girls: feminina, elegante e conectada à beleza e ao estilo.",
+      "Seu perfil representa a origem editorial da marca e permanece como parte da história que inspira a nova fase da plataforma.",
     ],
   },
   {

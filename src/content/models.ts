@@ -20,14 +20,14 @@ export const models: ModelProfile[] = [
     href: "/modelos/laysa-padovani",
   },
   {
-    name: "Marcella Narhell",
-    role: "Modelo",
+    name: "Melina Trida",
+    role: "Modelo e presença editorial",
     location: "Brasil",
-    image: "/legacy/marcella-narhell.jpeg",
+    image: "/institucional/melina-1024x819.png.webp",
     summary:
-      "Imagem de impacto para campanhas de moda, ensaios autorais e comunicação visual com energia ousada.",
-    highlight: "Ensaios, presença digital e campanhas",
-    href: "/modelos/marcella-narhell",
+      "Presença ligada à origem visual da Shine Girls, reunindo beleza, estilo e a identidade feminina que marcou os primeiros editoriais da marca.",
+    highlight: "Origem, beleza e identidade Shine Girls",
+    href: "/modelos/melina-trida",
   },
   {
     name: "Barbara Santos",
